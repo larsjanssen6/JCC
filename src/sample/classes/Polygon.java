@@ -6,14 +6,14 @@ import java.util.List;
 
 public class Polygon extends DrawingItem {
 
-    private List<Point> vertices;
+    private Point[] vertices;
     private double width;
     private double height;
     private double weight;
 
-    public Polygon(List<Point> points, double width, double height, double weight)
+    public Polygon(Point[] points, double width, double height, double weight)
     {
-        vertices = new ArrayList<Point>();
+        vertices = new Point[10];
         this.vertices = points;
         this.width = width;
         this.height = height;
@@ -22,7 +22,7 @@ public class Polygon extends DrawingItem {
 
     @Override
     public Point getAnchor() {
-        return vertices.get(0);
+        return vertices[0];
     }
 
     @Override
@@ -39,6 +39,11 @@ public class Polygon extends DrawingItem {
     public double getWeight() {
 
         return weight;
+    }
+
+    public Point[] getVertices()
+    {
+        return vertices;
     }
 
     @Override

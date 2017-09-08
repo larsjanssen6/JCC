@@ -3,7 +3,7 @@ package sample.classes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Drawing  {
+public class Drawing {
 
     private String name;
     private List<DrawingItem> items;
@@ -41,5 +41,15 @@ public class Drawing  {
     public void deleteItem(DrawingItem item)
     {
         this.items.remove(item);
+    }
+
+    public void paintUsing(IPaintable paintable)
+    {
+        for (DrawingItem t: this.items) {
+            if (t instanceof PaintedText){paintable.paint((PaintedText) t);}
+            if (t instanceof Image){paintable.paint((Image) t);}
+            if (t instanceof Oval){paintable.paint((Oval) t);}
+            if (t instanceof Polygon) {paintable.paint((Polygon) t);}
+        }
     }
 }

@@ -1,8 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.GridPane?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Canvas fx:id="canvas" height="261.0" layoutX="30.0" layoutY="93.0" width="536.0" />
+      <Button id="oval" fx:id="btnOval" layoutX="43.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnOval" text="Oval" />
+      <Button fx:id="btnImage" layoutX="141.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnImage" text="Image" />
+      <Button fx:id="polygon" layoutX="254.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnPolygon" text="Polygon" />
+      <Button layoutX="366.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnPaintedText" text="Painted text" />
+      <!--<TextField layoutX="471.0" layoutY="37.0" onAction="#txtPaintedText" prefHeight="27.0" prefWidth="92.0" />-->
+   </children>
+</Pane>

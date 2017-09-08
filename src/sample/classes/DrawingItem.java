@@ -18,5 +18,10 @@ public abstract class DrawingItem {
         this.color = color;
     }
 
+    public void paintUsing(IPaintable paintable)
+    {
+
+    }
+
     public static Comparator<DrawingItem> drawingItemComparator = Comparator.comparingDouble(o -> o.getAnchor().getX());
 }
