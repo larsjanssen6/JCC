@@ -1,14 +1,14 @@
 package sample;
 
 import javafx.fxml.FXML;
-import sample.classes.Drawing;
-import sample.classes.Oval;
-import sample.classes.IPaintable;
+import sample.classes.*;
 import sample.drawing.JavaFXPaintable;
 import javafx.scene.canvas.Canvas;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Collections;
 
 public class Controller {
     private Drawing drawing;
@@ -18,34 +18,40 @@ public class Controller {
     @FXML
     private Canvas canvas;
 
-    @FXML
-    private Panel asdf;
-    // een variabele button circle aanmaken en de method hernoemen. Bv tekenen.
+    SerializationMediator serialization;
+
+    DatabaseMediator database;
+
 
     public Controller()
     {
+        serialization = new SerializationMediator();
+        database = new DatabaseMediator();
+
         drawing = new Drawing();
         drawing.setName("Tekening");
     }
 
     @FXML
-    public void btnOval()
+    public void btnOval() throws SQLException, IOException, ClassNotFoundException {
+        Oval oval = new Oval(new Point(10, 10), 100, 100, 10, Color.BLACK);
+        drawing.addItem(oval);
+        painting();
+    }
+
+    @FXML
+    public void btnLoadFromFile()
     {
-        drawing.addItem(new Oval(new Point(10, 10), 100, 100, 10, Color.BLACK));
+        for(DrawingItem item: serialization.init()) {
+            drawing.addItem(item);
+        }
+
         painting();
     }
 
     @FXML
     public void btnImage()
     {
-
-        File createdFile = null;
-        try {
-            createdFile = File.createTempFile("file", ".tmp");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         sample.classes.Image image = new sample.classes.Image(new Point(10, 10), 30, 30, new File("sample/classes/loremFile.png"));
         drawing.addItem(image);
         painting();
@@ -59,9 +65,32 @@ public class Controller {
 
         drawing.addItem(pol);
 
-        System.out.println("jow");
         this.paint = new JavaFXPaintable(this.canvas);
         drawing.paintUsing(paint);
+    }
+
+    @FXML
+    public void btnSaveToDb() throws SQLException, IOException, ClassNotFoundException {
+
+        database.save(drawing.getItems());
+    }
+
+    @FXML
+    public void btnLoadFromDb() throws SQLException, ClassNotFoundException, IOException {
+
+        database.init();
+    }
+
+    @FXML
+    public void btnSaveToFile()
+    {
+        serialization.save(drawing.getItems());
+    }
+
+    @FXML
+    public void btnRemoveFile()
+    {
+        serialization.save(Collections.<DrawingItem> emptyList());
     }
 
     @FXML

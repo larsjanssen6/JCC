@@ -10,13 +10,19 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Canvas fx:id="canvas" height="261.0" layoutX="30.0" layoutY="93.0" width="536.0" />
+      <Canvas fx:id="canvas" height="409.0" layoutX="34.0" layoutY="98.0" width="600.0" />
       <Button id="oval" fx:id="btnOval" layoutX="43.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnOval" text="Oval" />
       <Button fx:id="btnImage" layoutX="141.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnImage" text="Image" />
       <Button fx:id="polygon" layoutX="254.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnPolygon" text="Polygon" />
       <Button layoutX="366.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnPaintedText" text="Painted text" />
+      <Button fx:id="loadFromFile" layoutX="59.0" layoutY="354.0" mnemonicParsing="false" onAction="#btnLoadFromFile" text="Load from file" />
+      <Button layoutX="270.0" layoutY="354.0" mnemonicParsing="false" onAction="#btnSaveToFile" prefHeight="27.0" prefWidth="103.0" text="Save to file" />
+      <Button layoutX="467.0" layoutY="354.0" mnemonicParsing="false" onAction="#btnRemoveFile" prefHeight="27.0" prefWidth="92.0" text="Remove file" />
+      <Button layoutX="59.0" layoutY="413.0" mnemonicParsing="false" onAction="#btnLoadFromDb" prefHeight="27.0" prefWidth="103.0" text="Load from db" />
+      <Button layoutX="271.0" layoutY="413.0" mnemonicParsing="false" onAction="#btnSaveToDb" prefHeight="27.0" prefWidth="103.0" text="Save to db" />
+      <!--<Button layoutX="467.0" layoutY="413.0" mnemonicParsing="false" onAction="#btnRemoveFromDb" prefHeight="27.0" prefWidth="124.0" text="Remove from db" />-->
       <!--<TextField layoutX="471.0" layoutY="37.0" onAction="#txtPaintedText" prefHeight="27.0" prefWidth="92.0" />-->
    </children>
 </Pane>
