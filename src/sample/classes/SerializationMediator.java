@@ -1,18 +1,18 @@
 package sample.classes;
 
 import java.io.*;
-import java.util.List;
 
 public class SerializationMediator implements IPersistency{
 
-    @Override
-    public void save(List<DrawingItem> items) {
+    //Serialize drawing to file
+
+    public void save(Drawing drawing) {
         try (
             OutputStream file = new FileOutputStream("items.ser");
             OutputStream buffer = new BufferedOutputStream(file);
             ObjectOutput output = new ObjectOutputStream(buffer);
         ){
-            output.writeObject(items);
+            output.writeObject(drawing);
         }
 
         catch(IOException ex){
@@ -20,15 +20,15 @@ public class SerializationMediator implements IPersistency{
         }
     }
 
-    @Override
-    public List<DrawingItem> init() {
+    //Init drawing from file
+
+    public Drawing init(String name) {
         try(
-            InputStream file = new FileInputStream("items.ser");
+            InputStream file = new FileInputStream(name);
             InputStream buffer = new BufferedInputStream(file);
             ObjectInput input = new ObjectInputStream (buffer);
         ){
-            //deserialize the List
-            return (List<DrawingItem>)input.readObject();
+            return (Drawing) input.readObject();
         }
         catch(ClassNotFoundException ex){
             System.out.print("Cannot perform input. Class not found.");

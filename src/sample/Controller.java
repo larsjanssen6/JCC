@@ -42,7 +42,7 @@ public class Controller {
     @FXML
     public void btnLoadFromFile()
     {
-        for(DrawingItem item: serialization.init()) {
+        for(DrawingItem item: serialization.init("items.ser").getItems()) {
             drawing.addItem(item);
         }
 
@@ -64,39 +64,43 @@ public class Controller {
         sample.classes.Polygon pol = new sample.classes.Polygon(points, 10, 10, 10);
 
         drawing.addItem(pol);
-
-        this.paint = new JavaFXPaintable(this.canvas);
-        drawing.paintUsing(paint);
+        painting();
     }
 
     @FXML
     public void btnSaveToDb() throws SQLException, IOException, ClassNotFoundException {
 
-        database.save(drawing.getItems());
+        database.save(drawing);
     }
 
     @FXML
     public void btnLoadFromDb() throws SQLException, ClassNotFoundException, IOException {
+        for(DrawingItem item: database.init("Tekening").getItems()) {
+            drawing.addItem(item);
+        }
 
-        database.init();
+        painting();
     }
 
     @FXML
     public void btnSaveToFile()
     {
-        serialization.save(drawing.getItems());
+        serialization.save(drawing);
     }
 
     @FXML
     public void btnRemoveFile()
     {
-        serialization.save(Collections.<DrawingItem> emptyList());
+        serialization.save(new Drawing());
     }
 
     @FXML
     public void btnPaintedText()
     {
-        System.out.println("oval!");
+        PaintedText text = new PaintedText("Hallo", "ARIAL", new Point(150, 100), 100, 100);
+        drawing.addItem(text);
+
+        painting();
     }
 
     public void painting()

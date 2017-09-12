@@ -1,9 +1,10 @@
 package sample.classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Drawing {
+public class Drawing implements Serializable {
 
     private String name;
     private List<DrawingItem> items;
